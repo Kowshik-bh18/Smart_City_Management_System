@@ -1,35 +1,46 @@
-# 🏙️ Complaint Management System
+# 🌆 Smart City Complaint Management System
 
-This is a Django-based web application for citizens to report local issues by uploading images and automatically tagging their current location. The app is designed to assist smart city initiatives and allows government authorities to track, manage, and resolve complaints effectively.
+An integrated Django web application that empowers citizens to raise complaints related to public infrastructure, utilities, and safety within a smart city initiative. The platform is modular, scalable, and can be used by municipal bodies to improve civic engagement and infrastructure responsiveness.
+
+---
+
+## 🧩 Modules / Django Apps
+
+| App Name           | Purpose                                               |
+|--------------------|--------------------------------------------------------|
+| `complaint`         | Upload issues with images and geolocation             |
+| `electricity`       | Report power cuts, faulty poles, and related issues   |
+| `emergency`         | Urgent complaints (accidents, medical, fire)          |
+| `mapdata`           | Handles location-based metadata or mapping visuals    |
+| `road`              | Road damage, potholes, and construction complaints    |
+| `waste_complaints`  | Specific UI for waste issues                          |
+| `waste_management`  | Backend and processing for waste complaints           |
+| `water_management`  | Water supply complaints and data handling             |
+| `dashboard`         | Admin/authority dashboard to view & manage complaints |
+| `smart_city`        | Main project settings and config                      |
 
 ---
 
 ## 🚀 Features
 
-- 📷 Image Upload with Automatic Location Detection (Latitude & Longitude)
-- 👥 User Authentication (Only logged-in users can submit complaints)
-- 🔐 Access Control: Users can only edit or delete their own complaints
-- 🌍 View complaint location on Google Maps
-- 🛠️ Admin Panel to monitor all complaints
-- 📬 **(Planned)** Auto-assignment of authority emails based on location
-- ⏰ **(Planned)** Periodic email reminders for unresolved complaints
-- ✅ **(Planned)** Manual and image-based complaint resolution tracking
+- 🖼️ Upload location-tagged images to report issues
+- 📍 Auto-detect location using browser geolocation
+- 📬 Planned: Automatic email routing to relevant govt. departments
+- 🛠️ Modular structure for scalability
+- 👤 User roles: Citizens, Authorities, Admins
+- 📊 Dashboard for monitoring city-wide problems
+- 🗑️ Domain-specific complaint tracking (Water, Road, Waste, Electricity, etc.)
 
 ---
 
-## 🗂️ Tech Stack
+## 🛠️ Technologies Used
 
-- **Backend:** Django 5.2
-- **Frontend:** HTML, Bootstrap
-- **Database:** SQLite (default), can be upgraded to PostgreSQL
-- **Other:** Geolocation API, Django Admin
+- **Backend:** Django 5.2 (Python)
+- **Frontend:** HTML5, Bootstrap
+- **Database:** SQLite (can be replaced with PostgreSQL)
+- **Others:** Geolocation API, Django Admin, File/Image uploads
 
 ---
 
-## 🛠️ Setup Instructions
+## 📁 Directory Structure
 
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/your-username/complaint-app.git
-cd complaint-app
