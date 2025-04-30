@@ -1,0 +1,34 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<h2>{{ action }} Image</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          const latitudeField = document.getElementById("id_latitude");
+          const longitudeField = document.getElementById("id_longitude");
+
+          if (latitudeField && longitudeField) {
+            latitudeField.value = position.coords.latitude;
+            longitudeField.value = position.coords.longitude;
+          }
+        },
+        function (error) {
+          console.warn("Geolocation error:", error.message);
+        }
+      );
+    } else {
+      console.warn("Geolocation not supported by this browser.");
+    }
+  });
+</script>
+{% endblock %}

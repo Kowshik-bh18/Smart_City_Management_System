@@ -1,0 +1,58 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container py-5">
+  <h2>{{ title }}</h2>
+
+  <a href="{% url 'electricity:create_outage_report' %}" class="btn btn-primary mb-3">Create New Report</a>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Reported By</th>
+        <th>Status</th>
+        <th>Longitude</th>
+        <th>Latitude</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for report in reports %}
+      {%if user.is_superuser or request.user == report.user%}
+      <tr>
+        <td>{{ report.location }}</td>
+        <td>{{ report.description|truncatechars:50 }}</td>
+        <td>{{ report.reported_by }}</td>
+        <td>{{ report.resolved|yesno:"Resolved,Unresolved" }}</td>
+        <td>
+          {% if report.longitude %}
+            <a href="https://www.google.com/maps?q={{ report.latitude }},{{ report.longitude }}" target="_blank">
+              {{ report.longitude }}
+            </a>
+          {% else %}
+            No longitude
+          {% endif %}
+        </td>
+        <td>
+          {% if report.latitude %}
+            <a href="https://www.google.com/maps?q={{ report.latitude }},{{ report.longitude }}" target="_blank">
+              {{ report.latitude }}
+            </a>
+          {% else %}
+            No latitude
+          {% endif %}
+        </td>
+        <td>
+          <a href="{% url 'electricity:update_outage_report' report.pk %}" class="btn btn-sm btn-warning">Edit</a>
+          <a href="{% url 'electricity:delete_outage_report' report.pk %}" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+      </tr>
+      
+      {%endif%}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

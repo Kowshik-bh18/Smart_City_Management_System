@@ -1,0 +1,29 @@
+{%extends 'base_generic.html'%}
+{%block content%}
+<div class="container mt-5">
+    <h1 class="mb-4">Create/Update Consumer</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_user" class="form-label">User</label>
+            {{ form.user}}
+        </div>
+        <div class="mb-3">
+            <label for="id_address" class="form-label">Address</label>
+            {{ form.address }}
+        </div>
+        <div class="mb-3">
+            <label for="id_meter_number" class="form-label">Meter Number</label>
+            {{ form.meter_number }}
+        </div>
+        <div class="mb-3">
+            <label for="id_connected_transformer" class="form-label">Connected Transformer</label>
+            {{ form.connected_transformer }}
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+    <a href="{% url 'electricity:consumer_list' %}" class="btn btn-secondary mt-3">Back to List</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybD5a2Jh2k3TfjcG9EGAeZV1w4p6B5RmL2aSIsDoh/Ol5QH1J" crossorigin="anonymous"></script>
+{%endblock%}

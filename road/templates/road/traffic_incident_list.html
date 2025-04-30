@@ -1,0 +1,52 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container py-5">
+  <h2 class="mb-4">Traffic Incidents</h2>
+  <a href="{% url 'road:traffic_incident_create' %}" class="btn btn-primary mb-3">Add New Incident</a>
+  <table class="table table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Road</th>
+        <th>Type</th>
+        <th>Severity</th>
+        <th>Date</th>
+        <th>Location</th>
+        <th>Resolved</th>
+        {%if not user.is_superuser%}
+        <th>Actions</th>
+        {%endif%}
+      </tr>
+    </thead>
+    <tbody>
+      {% for incident in incidents %}
+        <tr>
+          <td>{{ incident.road.name }}</td>
+          <td>{{ incident.incident_type }}</td>
+          <td>{{ incident.severity }}</td>
+          <td>{{ incident.date_reported|date:"Y-m-d H:i" }}</td>
+          <td>
+            <a href="https://www.google.com/maps/search/?api=1&query={{ report.latitude }},{{ report.longitude }}" 
+               target="_blank" class="text-decoration-underline text-primary">
+              ({{ report.latitude }}, {{ report.longitude }})
+            </a>
+          </td>
+          <td>
+            {% if incident.resolved %}
+              ✅
+            {% else %}
+              ❌
+            {% endif %}
+          </td>
+          {%if not user.is_superuser%}
+          <td>
+            <a href="{% url 'road:traffic_incident_update' incident.pk %}" class="btn btn-warning btn-sm">Edit</a>
+            <a href="{% url 'road:traffic_incident_delete' incident.pk %}" class="btn btn-danger btn-sm">Delete</a>
+          </td>
+          {%endif%}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{%extends 'base_generic.html'%}
+{%block content%}
+<div class="container mt-5">
+    <h1>Are you sure you want to delete this bill?</h1>
+    <p><strong>Consumer:</strong> {{ bill.consumer.user.username }}</p>
+    <p><strong>Issue Date:</strong> {{ bill.issue_date }}</p>
+    <p><strong>Due Date:</strong> {{ bill.due_date }}</p>
+    <p><strong>Total Units:</strong> {{ bill.total_units }}</p>
+    <p><strong>Amount Due:</strong> {{ bill.amount_due }}</p>
+    <p><strong>Paid:</strong> {% if bill.is_paid %} Yes {% else %} No {% endif %}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+    </form>
+    <a href="{% url 'electricity:bill_list' %}" class="btn btn-secondary">Cancel</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+{%endblock%}

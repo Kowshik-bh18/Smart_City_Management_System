@@ -1,0 +1,12 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<h2>{% if form.instance.pk %}Update{% else %}Add{% endif %} Road</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+
+<a href="{% url 'road:road_list' %}" class="btn btn-secondary">Back</a>
+{% endblock %}

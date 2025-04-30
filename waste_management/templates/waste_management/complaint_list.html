@@ -1,0 +1,59 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="mb-4">My Waste Complaints</h2>
+    {%if not user.is_superuser%}
+    <a href="{% url 'waste_management:complaint_create' %}" class="btn btn-success mb-3">+ New Complaint</a>
+    {%endif%}
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Date Reported</th>
+                <th>Image</th>
+                <th>Location</th>
+                {%if not user.is_superuser%}
+                <th>Actions</th>
+                {%endif%}
+            </tr>
+        </thead>
+        <tbody>
+            {% for complaint in complaints %}
+            <tr>
+                <td>{{ complaint.location }}</td>
+                <td>{{ complaint.description|truncatewords:10 }}</td>
+                <td>
+                    <span class="badge bg-{% if complaint.status == 'Pending' %}warning{% elif complaint.status == 'In Progress' %}info{% else %}success{% endif %}">
+                        {{ complaint.status }}
+                    </span>
+                </td>
+                <td>{{ complaint.date_reported|date:"Y-m-d H:i" }}</td>
+                <td>
+                    {% if complaint.image %}
+                        <img src="{{ complaint.image.url }}" width="80" height="60" class="img-thumbnail">
+                    {% else %}
+                        No image
+                    {% endif %}
+                    
+                </td>
+                <td>
+                        <a href="https://www.google.com/maps/search/?api=1&query={{ image.latitude }},{{ image.longitude }}" 
+                           target="_blank" class="text-decoration-underline text-primary">
+                          ({{ image.latitude }}, {{ image.longitude }})
+                        </a>
+                </td>
+                {%if not user.is_superuser%}
+                <td>
+                    <a href="{% url 'waste_management:complaint_update' complaint.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'waste_management:complaint_delete' complaint.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+                {%endif%}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

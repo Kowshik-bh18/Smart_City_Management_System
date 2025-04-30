@@ -1,0 +1,41 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="container py-5">
+    <h2 class="mb-4">Water Sources</h2>
+    {%if user.is_superuser%}
+    <a href="{% url 'water_management:water_source_create' %}" class="btn btn-primary mb-3">Add New Water Source</a>
+    {%endif%}
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Capacity</th>
+          <th>Type</th>
+          <th>Status</th>
+          {%if user.is_superuser%}
+          <th>Actions</th>
+          {%endif%}
+        </tr>
+      </thead>
+      <tbody>
+        {% for source in water_sources %}
+          <tr>
+            <td>{{ source.name }}</td>
+            <td>{{ source.location }}</td>
+            <td>{{ source.capacity }} Liters</td>
+            <td>{{ source.get_type_display }}</td>
+            <td>{{ source.get_status_display }}</td>
+            {%if user.is_superuser%}
+            <td>
+              <a href="{% url 'water_management:water_source_update' source.pk %}" class="btn btn-warning btn-sm">Edit</a>
+              <a href="{% url 'water_management:water_source_delete' source.pk %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+            {%endif%}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

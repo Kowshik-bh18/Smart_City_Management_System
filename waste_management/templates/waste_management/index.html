@@ -1,0 +1,75 @@
+
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h1 class="dashboard-title">Smart City - Waste Management</h1>
+      <p class="text-muted">Manage and monitor all aspects of waste in the smart city.</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Waste Collection Points -->
+      <div class="col-md-4">
+        <a href="{%url 'waste_management:wastebin_list'%}" class="text-decoration-none">
+          <div class="card text-bg-light p-4 h-100">
+            <h4>Waste Collection Points</h4>
+            <p>View, manage, and monitor all city-wide waste bins.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Garbage Collection Schedule -->
+      <div class="col-md-4">
+        <a href="{% url 'waste_management:collection_schedule_list'%}" class="text-decoration-none">
+          <div class="card text-bg-light p-4 h-100">
+            <h4>Garbage Collection Schedule</h4>
+            <p>Assign and track collection routes and timings.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Citizen Waste Complaints -->
+      <div class="col-md-4">
+        <a href="{%url 'waste_management:complaint_list'%}" class="text-decoration-none">
+          <div class="card text-bg-light p-4 h-100">
+            <h4>Citizen Waste Complaints</h4>
+            <p>Handle reports from citizens about waste issues.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Smart Bin Monitoring -->
+      <div class="col-md-4">
+        <a href="{%url 'waste_management:bin_sensor_data_list'%}" class="text-decoration-none">
+          <div class="card text-bg-light p-4 h-100">
+            <h4>Smart Bin Monitoring</h4>
+            <p>Real-time updates on bin fill levels and sensor alerts.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Recyclable vs Non-Recyclable Tracking -->
+      <div class="col-md-4">
+        <a href="{%url 'waste_management:waste_type_record_list'%}" class="text-decoration-none">
+          <div class="card text-bg-light p-4 h-100">
+            <h4>Waste Type Tracking</h4>
+            <p>Analyze recyclable vs non-recyclable waste trends.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Analytics Dashboard -->
+      <div class="col-md-4">
+        <a href="{%url 'waste_management:waste_analytics_list'%}" class="text-decoration-none">
+          <div class="card text-bg-light p-4 h-100">
+            <h4>Analytics Dashboard</h4>
+            <p>Visualize data insights for waste management performance.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+{%endblock content%}

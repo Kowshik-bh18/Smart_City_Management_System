@@ -1,0 +1,18 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<h2>{{ action }} Image</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{{ action }} Image</button>
+</form>
+
+<script>
+navigator.geolocation.getCurrentPosition(function(position) {
+    document.getElementById("id_latitude").value = position.coords.latitude;
+    document.getElementById("id_longitude").value = position.coords.longitude;
+});
+</script>
+
+{% endblock %}

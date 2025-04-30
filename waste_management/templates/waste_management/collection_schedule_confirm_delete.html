@@ -1,0 +1,43 @@
+
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <div class="container py-5">
+        <h2 class="mb-4">Confirm Deletion</h2>
+
+        <!-- Success or Error Messages -->
+        {% if messages %}
+            <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <p>Are you sure you want to delete the following collection schedule?</p>
+        
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Bin Location</th>
+                    <th>Collection Date</th>
+                    <th>Collected</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ schedule.bin.location }}</td>
+                    <td>{{ schedule.collection_date|date:"Y-m-d" }}</td>
+                    <td>{{ schedule.collected }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Confirm Deletion Form -->
+        <form method="POST" class="mt-4">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirm Deletion</button>
+            <a href="{% url 'waste_management:collection_schedule_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+{%endblock content%}

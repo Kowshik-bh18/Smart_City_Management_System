@@ -1,0 +1,50 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">Waste Type Records</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    {%if user.is_superuser%}
+    <a href="{% url 'waste_management:waste_type_record_create' %}" class="btn btn-primary mb-3">Add New Record</a>
+    {%endif%}
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Zone</th>
+                <th>Date</th>
+                <th>Recyclable (kg)</th>
+                <th>Non-Recyclable (kg)</th>
+                <th>Total (kg)</th>
+                
+    {%if user.is_superuser%}
+                <th>Actions</th>
+            {%endif%}
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+                <tr>
+                    <td>{{ record.zone }}</td>
+                    <td>{{ record.date }}</td>
+                    <td>{{ record.recyclable_weight }}</td>
+                    <td>{{ record.non_recyclable_weight }}</td>
+                    <td>{{ record.total_weight }}</td>
+                    
+    {%if user.is_superuser%}
+                    <td>
+                        <a href="{% url 'waste_management:waste_type_record_update' record.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'waste_management:waste_type_record_delete' record.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                    {%endif%}
+                </tr>
+            {% empty %}
+                <tr><td colspan="6" class="text-center">No records found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

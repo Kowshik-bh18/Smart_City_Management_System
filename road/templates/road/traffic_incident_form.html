@@ -1,0 +1,43 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container py-5">
+  <h2 class="mb-4">{{ form.instance.pk|yesno:"Edit Incident,Create New Incident" }}</h2>
+  
+  <form method="post">
+    {% csrf_token %}
+    
+    <!-- Display form fields -->
+    {{ form.as_p }}
+
+    <!-- Hidden fields for latitude and longitude -->
+    {{ form.latitude }}
+    {{ form.longitude }}
+
+    <!-- Save and Cancel buttons -->
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'road:traffic_incident_list' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+
+  <!-- JavaScript to get and fill latitude/longitude -->
+  <script>
+    window.onload = function () {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          const latField = document.getElementById('id_latitude');
+          const longField = document.getElementById('id_longitude');
+
+          if (latField && longField) {
+            latField.value = position.coords.latitude;
+            longField.value = position.coords.longitude;
+          }
+        }, function (error) {
+          console.warn("Geolocation failed: " + error.message);
+        });
+      } else {
+        console.log("Geolocation is not supported by this browser.");
+      }
+    }
+  </script>
+</div>
+{% endblock %}

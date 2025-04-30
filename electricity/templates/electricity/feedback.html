@@ -1,0 +1,31 @@
+<!-- templates/outages/feedback.html -->
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Provide Feedback on Outage</h2>
+    <div class="card mb-4">
+        <div class="card-header">
+            Outage at: {{ outage.location }}
+        </div>
+        <div class="card-body">
+            <p><strong>Description:</strong> {{ outage.description }}</p>
+            <p><strong>Reported on:</strong> {{ outage.reported_at|date:"F j, Y" }}</p>
+            <p><strong>Status:</strong> {% if outage.resolved %}Resolved{% else %}Unresolved{% endif %}</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            Has this outage been resolved?
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+
+
+<div class="container mt-5">
+  <h2>All Substations</h2>
+  {%if user.is_superuser%}
+  <a href="{% url 'electricity:substation_create' %}" class="btn btn-primary mb-3">Add New Substation</a>
+  {%endif%}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Grid</th>
+        <th>Location</th>
+        <th>Capacity (MW)</th>
+        {%if user.is_superuser%}
+        <th>Actions</th>
+        {%endif%}
+      </tr>
+    </thead>
+    <tbody>
+      {% for sub in substations %}
+      <tr>
+        <td>{{ sub.name }}</td>
+        <td>{{ sub.grid.name }}</td>
+        <td>{{ sub.location }}</td>
+        <td>{{ sub.capacity_mw }}</td>
+        {%if user.is_superuser%}
+        <td>
+          <a href="{% url 'electricity:substation_update' sub.pk %}" class="btn btn-sm btn-warning">Edit</a>
+          <a href="{% url 'electricity:substation_delete' sub.pk %}" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+        {%endif%}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

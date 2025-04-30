@@ -1,0 +1,13 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>Are you sure you want to delete this sensor data?</h2>
+  <p>Sensor data for bin: {{ sensor_data.bin }} ({{ sensor_data.recorded_at }})</p>
+  <p>Fill Percentage: {{ sensor_data.fill_percentage }}%</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="{% url 'waste_management:bin_sensor_data_list' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+{% endblock %}

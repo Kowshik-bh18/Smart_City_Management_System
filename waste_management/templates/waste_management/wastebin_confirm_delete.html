@@ -1,0 +1,51 @@
+
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <div class="container py-5">
+        <h2 class="mb-4">Confirm Deletion</h2>
+        
+        <!-- Show Success or Error Messages -->
+        {% if messages %}
+            <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <p>Are you sure you want to delete the following waste bin?</p>
+        
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Location</th>
+                    <th>Zone</th>
+                    <th>Bin Type</th>
+                    <th>Capacity (kg)</th>
+                    <th>Current Fill (kg)</th>
+                    <th>Last Collected</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ bin.id }}</td>
+                    <td>{{ bin.location }}</td>
+                    <td>{{ bin.zone }}</td>
+                    <td>{{ bin.bin_type }}</td>
+                    <td>{{ bin.capacity_kg }}</td>
+                    <td>{{ bin.current_fill_kg }}</td>
+                    <td>{{ bin.last_collected|date:"Y-m-d" }}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Delete Confirmation Form -->
+        <form method="POST" class="mt-4">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirm Deletion</button>
+            <a href="{% url 'waste_management:wastebin_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+{%endblock content%}

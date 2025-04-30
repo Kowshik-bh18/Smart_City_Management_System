@@ -1,0 +1,13 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<div class="container py-5">
+  <h2 class="mb-4">Schedule / Edit Maintenance</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Submit</button>
+    <a href="{% url 'road:road_maintenance_list' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}
+

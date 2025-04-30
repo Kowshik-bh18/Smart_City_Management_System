@@ -1,0 +1,13 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4 text-danger">Delete Waste Type Record</h2>
+    <p>Are you sure you want to delete the record from <strong>{{ record.zone }}</strong> on <strong>{{ record.date }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="{% url 'waste_management:waste_type_record_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h1 class="dashboard-title">Smart City - Electricity Management</h1>
+    <p class="text-muted">Monitor and manage the city's electrical infrastructure and services.</p>
+  </div>
+
+  <div class="row g-4">
+    <!-- Power Grids -->
+    <div class="col-md-4">
+      <a href="{%url 'electricity:grid_list'%}" class="text-decoration-none">
+        <div class="card text-bg-light p-4 h-100">
+          <h4>Power Grids</h4>
+          <p>View and manage all power grids in the city.</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Substations -->
+    <div class="col-md-4">
+      <a href="{%url 'electricity:substation_list'%}" class="text-decoration-none">
+        <div class="card text-bg-light p-4 h-100">
+          <h4>Substations</h4>
+          <p>Track and maintain city substations.</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Transformers -->
+    <div class="col-md-4">
+      <a href="{%url 'electricity:transformer_list'%}" class="text-decoration-none">
+        <div class="card text-bg-light p-4 h-100">
+          <h4>Transformers</h4>
+          <p>Manage transformer locations, status, and capacity.</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Consumers -->
+    {%if user.is_superuser%}
+    <div class="col-md-4">
+      <a href="{%url 'electricity:consumer_list'%}" class="text-decoration-none">
+        <div class="card text-bg-light p-4 h-100">
+          <h4>Consumers</h4>
+          <p>Handle consumer accounts and service information.</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-4">
+      <a href="{%url 'electricity:electricity_usage_list'%}" class="text-decoration-none">
+        <div class="card text-bg-light p-4 h-100">
+          <h4>Electricity Usage</h4>
+          <p>Monitor individual or regional electricity consumption.</p>
+        </div>
+      </a>
+    </div>
+    {%endif%}
+
+    <!-- Electricity Usage -->
+    
+
+    <!-- Billing -->
+    <div class="col-md-4">
+      <a href="{%url 'electricity:bill_list'%}" class="text-decoration-none">
+        <div class="card text-bg-light p-4 h-100">
+          <h4>Billing</h4>
+          <p>Generate and manage electricity bills.</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Payments -->
+    <div class="col-md-4">
+      <a href="{%url 'electricity:payment_list'%}" class="text-decoration-none">
+        <div class="card text-bg-light p-4 h-100">
+          <h4>Payments</h4>
+          <p>Track consumer bill payments and dues.</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Outage Reports -->
+    <div class="col-md-4">
+      <a href="{%url 'electricity:outage_report_list'%}" class="text-decoration-none">
+        <div class="card text-bg-light p-4 h-100">
+          <h4>Outage Reports</h4>
+          <p>Report and view power outages.</p>
+        </div>
+      </a>
+    </div>
+
+    
+  </div>
+</div>
+{% endblock content %}

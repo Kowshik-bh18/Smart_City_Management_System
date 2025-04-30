@@ -1,0 +1,46 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Water Quality Checks</h2>
+  
+  {%if user.is_superuser%}
+  <a href="{% url 'water_management:water_quality_check_create' %}" class="btn btn-success mb-3">Add New Check</a>
+  {%endif%}
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Source</th>
+        <th>Date</th>
+        <th>pH Level</th>
+        <th>Contaminants</th>
+        <th>Remarks</th>
+        
+    {%if user.is_superuser%}
+        <th>Actions</th>
+        {%endif%}
+      </tr>
+    </thead>
+    <tbody>
+      {% for check in checks %}
+        <tr>
+          <td>{{ check.source.name }}</td>
+          <td>{{ check.date }}</td>
+          <td>{{ check.ph_level }}</td>
+          <td>{{ check.contaminants_detected|default:"None" }}</td>
+          <td>{{ check.remarks|default:"-" }}</td>
+          
+    {%if user.is_superuser%}
+          <td>
+            <a href="{% url 'water_management:water_quality_check_update' check.pk %}" class="btn btn-sm btn-warning">Edit</a>
+            <a href="{% url 'water_management:water_quality_check_delete' check.pk %}" class="btn btn-sm btn-danger">Delete</a>
+          </td>
+          {%endif%}
+        </tr>
+      {% empty %}
+        <tr><td colspan="6">No quality checks found.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

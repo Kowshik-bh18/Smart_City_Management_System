@@ -1,0 +1,21 @@
+{%extends 'base_generic.html'%}
+{%block content%}
+<div class="container mt-5">
+    <h1 class="mb-4">Bill Detail</h1>
+    <p><strong>Consumer:</strong> {{ bill.consumer.user.username }}</p>
+    <p><strong>Issue Date:</strong> {{ bill.issue_date }}</p>
+    <p><strong>Due Date:</strong> {{ bill.due_date }}</p>
+    <p><strong>Total Units:</strong> {{ bill.total_units }}</p>
+    <p><strong>Amount Due:</strong> {{ bill.amount_due }}</p>
+    <p><strong>Paid:</strong> {% if bill.is_paid %} Yes {% else %} No {% endif %}</p>
+    {%if user.is_superuser%}
+    <a href="{% url 'electricity:bill_update' bill.pk %}" class="btn btn-warning">Edit</a>
+    <a href="{% url 'electricity:bill_delete' bill.pk %}" class="btn btn-danger">Delete</a>
+    {%endif%}
+    
+    <a href="{% url 'electricity:bill_list' %}" class="btn btn-secondary">Back to List</a>
+    <a href="{% url 'electricity:create_payment' bill.pk %}" class="btn btn-primary mb-3">Create Payment</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+{%endblock%}

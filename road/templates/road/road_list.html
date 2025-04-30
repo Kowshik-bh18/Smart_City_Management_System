@@ -1,0 +1,36 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<h2>Road List</h2>
+{%if user.is_superuser%}
+<a href="{% url 'road:road_create' %}" class="btn btn-primary">Add New Road</a>
+{%endif%}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Location</th>
+            <th>Condition</th>
+            {%if user.is_superuser%}
+            <th>Actions</th>
+            {%endif%}
+        </tr>
+    </thead>
+    <tbody>
+        {% for road in roads %}
+            <tr>
+                <td>{{ road.name }}</td>
+                <td>{{ road.get_road_type_display }}</td>
+                <td>{{ road.location }}</td>
+                <td>{{ road.condition }}</td>
+                {%if user.is_superuser%}
+                <td>
+                    <a href="{% url 'road:road_update' road.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'road:road_delete' road.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+                {%endif%}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

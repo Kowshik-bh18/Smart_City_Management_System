@@ -1,0 +1,158 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center mb-5">
+    <div class="col-lg-8 text-center">
+      <h2 class="fw-bold text-primary mb-3">Smart City Management Dashboard</h2>
+      <p class="text-white lead">Monitor and manage your city's critical infrastructure</p>
+      <hr class="my-4 mx-auto" style="width: 50%; border-top: 2px solid #3498db;">
+    </div>
+  </div>
+
+  <div class="row g-4 justify-content-center">
+    <!-- Road Infrastructure -->
+    <div class="col-md-6 col-lg-4">
+      <a href="{% url 'road:index' %}" class="text-decoration-none card-link">
+        <div class="card h-100 shadow-sm border-0 transition-card">
+          <div class="card-body d-flex flex-column align-items-center text-center p-4">
+            <div class="icon-circle bg-primary-light mb-3">
+              <i class="fas fa-road text-primary fa-3x"></i>
+            </div>
+            <h5 class="card-title fw-bold text-light">Roads</h5>
+            <p class="card-text text-light">Manage road infrastructure and traffic systems</p>
+          </div>
+          <div class="card-footer bg-primary text-white py-2 text-center transition-footer">
+            <small>View Details <i class="fas fa-arrow-right ms-1"></i></small>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Water Management -->
+    <div class="col-md-6 col-lg-4">
+      <a href="{% url 'water_management:index' %}" class="text-decoration-none card-link">
+        <div class="card h-100 shadow-sm border-0 transition-card">
+          <div class="card-body d-flex flex-column align-items-center text-center p-4">
+            <div class="icon-circle bg-info-light mb-3">
+              <i class="fas fa-water text-info fa-3x"></i>
+            </div>
+            <h5 class="card-title fw-bold text-light">Water Management</h5>
+            <p class="card-text text-light">Monitor water resources and distribution</p>
+          </div>
+          <div class="card-footer bg-info text-white py-2 text-center transition-footer">
+            <small>View Details <i class="fas fa-arrow-right ms-1"></i></small>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Waste Management -->
+    <div class="col-md-6 col-lg-4">
+      <a href="{% url 'waste_management:home-page' %}" class="text-decoration-none card-link">
+        <div class="card h-100 shadow-sm border-0 transition-card">
+          <div class="card-body d-flex flex-column align-items-center text-center p-4">
+            <div class="icon-circle bg-success-light mb-3">
+              <i class="fas fa-recycle text-success fa-3x"></i>
+            </div>
+            <h5 class="card-title fw-bold text-light">Waste Management</h5>
+            <p class="card-text text-light">Track waste collection and recycling efforts</p>
+          </div>
+          <div class="card-footer bg-success text-white py-2 text-center transition-footer">
+            <small>View Details <i class="fas fa-arrow-right ms-1"></i></small>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <a href="{% url 'electricity:index' %}" class="text-decoration-none card-link">
+        <div class="card h-100 shadow-lg border-0 transition-card" style="background: linear-gradient(135deg, #1e3c72, #2a5298);">
+          <div class="card-body d-flex flex-column align-items-center text-center p-4">
+            <div class="icon-circle bg-light mb-3" style="border-radius: 50%; padding: 15px;">
+              <i class="fas fa-bolt text-warning fa-3x"></i>
+            </div>
+            <h5 class="card-title fw-bold text-white">Electricity</h5>
+            <p class="card-text text-white">Monitor energy usage and transformer status</p>
+          </div>
+          <div class="card-footer bg-primary text-white py-2 text-center transition-footer">
+            <small>View Dashboard <i class="fas fa-arrow-right ms-1"></i></small>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+  }
+
+  .bg-primary-light {
+    background-color: rgba(13, 110, 253, 0.1);
+  }
+
+  .bg-info-light {
+    background-color: rgba(13, 202, 240, 0.1);
+  }
+
+  .bg-success-light {
+    background-color: rgba(25, 135, 84, 0.1);
+  }
+
+  .transition-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .transition-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .transition-footer {
+    border-top: none;
+    border-radius: 0 0 0.25rem 0.25rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .transition-footer:hover {
+    background-color: rgba(0, 191, 174, 0.9);
+  }
+
+  .card-footer {
+    border-top: none;
+    border-radius: 0 0 0.25rem 0.25rem;
+  }
+
+  .card-text {
+    font-size: 1.1rem;
+    color: #ffffff;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    color: #ffffff;
+  }
+
+  .card-footer small {
+    font-size: 0.9rem;
+  }
+
+  /* Custom hover effect for icon-circle */
+  .icon-circle:hover {
+    transform: scale(1.1);
+  }
+</style>
+
+<!-- Note: This template assumes you have FontAwesome included in your base template -->
+<!-- If you don't have FontAwesome, add this to your base_generic.html head section: -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
+{% endblock %}

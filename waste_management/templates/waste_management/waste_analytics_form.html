@@ -1,0 +1,30 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">{{ form.instance.pk|yesno:"Update Analytics Record,Add New Analytics Record" }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.zone.label_tag }} {{ form.zone }}
+        </div>
+        <div class="mb-3">
+            {{ form.month.label_tag }} {{ form.month }}
+        </div>
+        <div class="mb-3">
+            {{ form.total_waste_kg.label_tag }} {{ form.total_waste_kg }}
+        </div>
+        <div class="mb-3">
+            {{ form.collection_efficiency.label_tag }} {{ form.collection_efficiency }}
+        </div>
+        <div class="mb-3">
+            {{ form.complaints_resolved.label_tag }} {{ form.complaints_resolved }}
+        </div>
+        <div class="mb-3">
+            {{ form.complaints_total.label_tag }} {{ form.complaints_total }}
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{% url 'waste_management:waste_analytics_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

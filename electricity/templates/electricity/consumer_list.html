@@ -1,0 +1,30 @@
+{%extends 'base_generic.html'%}
+{%block content%}
+<div class="container mt-5">
+    <h1 class="mb-4">Consumers List</h1>
+    <a href="{% url 'electricity:consumer_create' %}" class="btn btn-primary mb-3">Create New Consumer</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Meter Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for consumer in consumers %}
+                <tr>
+                    <td>{{ consumer.user.username }}</td>
+                    <td>{{ consumer.meter_number }}</td>
+                    <td>
+                        <a href="{% url 'electricity:consumer_update' consumer.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'electricity:consumer_delete' consumer.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybD5a2Jh2k3TfjcG9EGAeZV1w4p6B5RmL2aSIsDoh/Ol5QH1J" crossorigin="anonymous"></script>
+{%endblock%}

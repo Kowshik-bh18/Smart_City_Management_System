@@ -1,0 +1,53 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h1 class="dashboard-title">Smart City - Water Management</h1>
+      <p class="text-muted">Monitor and manage all aspects of water usage, sources, quality, and incidents in the city.</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Water Sources Section -->
+      <div class="col-md-3">
+        <a href="{%url 'water_management:water_source_list'%}" class="text-decoration-none">
+          <div class="card text-bg-light p-4 h-100">
+            <h4>Water Sources</h4>
+            <p>View, manage, and monitor all water sources in the city.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Water Consumption Section -->
+      <div class="col-md-3">
+        <a href="{%url 'water_management:water_consumption_list'%}" class="text-decoration-none">
+          <div class="card text-bg-light p-4 h-100">
+            <h4>Water Consumption</h4>
+            <p>Track and monitor water consumption across different zones.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Leakage Reports Section -->
+      <div class="col-md-3">
+        <a href="{%url 'water_management:leakage_report_list'%}" class="text-decoration-none">
+          <div class="card text-bg-light p-4 h-100">
+            <h4>Reports</h4>
+            <p>Report and track water related problems.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Water Quality Checks Section -->
+      <div class="col-md-3">
+        <a href="{%url 'water_management:water_quality_check_list'%}" class="text-decoration-none">
+          <div class="card text-bg-light p-4 h-100">
+            <h4>Water Quality Checks</h4>
+            <p>Monitor and ensure the quality of water from various sources.</p>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

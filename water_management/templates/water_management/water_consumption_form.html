@@ -1,0 +1,36 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="container py-5">
+    <h2 class="mb-4">{% if form.instance.pk %}Update{% else %}Create{% endif %} Water Consumption Record</h2>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="zone" class="form-label">Zone</label>
+        {{ form.zone }}
+      </div>
+
+      <div class="mb-3">
+        <label for="date" class="form-label">Date</label>
+        {{ form.date }}
+      </div>
+
+      <div class="mb-3">
+        <label for="residential_usage" class="form-label">Residential Usage (liters)</label>
+        {{ form.residential_usage }}
+      </div>
+
+      <div class="mb-3">
+        <label for="commercial_usage" class="form-label">Commercial Usage (liters)</label>
+        {{ form.commercial_usage }}
+      </div>
+
+      <div class="mb-3">
+        <label for="industrial_usage" class="form-label">Industrial Usage (liters)</label>
+        {{ form.industrial_usage }}
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+{% endblock %}

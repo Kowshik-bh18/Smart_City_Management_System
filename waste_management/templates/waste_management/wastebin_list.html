@@ -1,0 +1,55 @@
+
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <div class="container py-5">
+        <h2 class="mb-4">Waste Bins</h2>
+        
+        <!-- Show Success Message -->
+        {% if messages %}
+            <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <!-- Add Bin Button -->
+        <a href="{% url 'waste_management:wastebin_create' %}" class="btn btn-primary mb-4">Add New Waste Bin</a>
+        
+        <!-- Waste Bins Table -->
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Location</th>
+                    <th>Zone</th>
+                    <th>Bin Type</th>
+                    <th>Capacity (kg)</th>
+                    <th>Current Fill (kg)</th>
+                    <th>Last Collected</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bin in bins %}
+                    <tr>
+                        <td>{{ bin.id }}</td>
+                        <td>{{ bin.location }}</td>
+                        <td>{{ bin.zone }}</td>
+                        <td>{{ bin.bin_type }}</td>
+                        <td>{{ bin.capacity_kg }}</td>
+                        <td>{{ bin.current_fill_kg }}</td>
+                        <td>{{ bin.last_collected|date:"Y-m-d" }}</td>
+                        <td>
+                            <!-- Edit Button -->
+                            <a href="{% url 'waste_management:wastebin_update' bin.id %}" class="btn btn-warning btn-sm">Edit</a>
+                            <!-- Delete Button -->
+                            <a href="{% url 'waste_management:wastebin_delete' bin.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{%endblock content%}

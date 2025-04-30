@@ -1,0 +1,41 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<div class="container mt-5">
+  
+  {%if user.is_superuser%}
+  <h2>All Power Grids</h2>
+  {%endif%}
+  <a href="{% url 'electricity:grid_create' %}" class="btn btn-primary mb-3">Add New Grid</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Region</th>
+        <th>Capacity (MW)</th>
+        <th>Status</th>
+        
+    {%if user.is_superuser%}
+        <th>Actions</th>
+        {%endif%}
+      </tr>
+    </thead>
+    <tbody>
+      {% for grid in grids %}
+      <tr>
+        <td>{{ grid.name }}</td>
+        <td>{{ grid.region }}</td>
+        <td>{{ grid.capacity_mw }}</td>
+        <td>{{ grid.status }}</td>
+        
+    {%if user.is_superuser%}
+        <td>
+          <a href="{% url 'electricity:grid_update' grid.pk %}" class="btn btn-sm btn-warning">Edit</a>
+          <a href="{% url 'electricity:grid_delete' grid.pk %}" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+        {%endif%}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

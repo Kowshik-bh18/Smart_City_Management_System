@@ -1,0 +1,14 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container py-4">
+  <h2 class="mb-4 text-danger">Confirm Delete</h2>
+  <p>Are you sure you want to delete the leakage report from <strong>{{ report.location }}</strong> reported on <strong>{{ report.date_reported|date:"Y-m-d" }}</strong>?</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a href="{% url 'water_management:leakage_report_list' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}

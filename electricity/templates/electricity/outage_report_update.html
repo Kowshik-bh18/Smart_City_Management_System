@@ -1,0 +1,24 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container py-5">
+  <h2>Edit Outage Report</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="mb-3">
+      <label for="id_latitude" class="form-label">Latitude</label>
+      <input type="text" name="latitude" id="id_latitude" class="form-control" value="{{ form.latitude.value }}">
+    </div>
+    <div class="mb-3">
+      <label for="id_longitude" class="form-label">Longitude</label>
+      <input type="text" name="longitude" id="id_longitude" class="form-control" value="{{ form.longitude.value }}">
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Changes</button>
+    <a href="{% url 'electricity:outage_report_list' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}

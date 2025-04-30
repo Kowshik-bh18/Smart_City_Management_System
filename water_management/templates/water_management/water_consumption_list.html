@@ -1,0 +1,46 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="container py-5">
+    <h2 class="mb-4">Water Consumption Records</h2>
+    
+    {%if user.is_superuser%}
+    <a href="{% url 'water_management:water_consumption_create' %}" class="btn btn-primary mb-3">Add New Record</a>
+    {%endif%}
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Zone</th>
+          <th>Date</th>
+          <th>Residential Usage (liters)</th>
+          <th>Commercial Usage (liters)</th>
+          <th>Industrial Usage (liters)</th>
+          <th>Total Usage (liters)</th>
+          
+    {%if user.is_superuser%}
+          <th>Actions</th>
+          {%endif%}
+        </tr>
+      </thead>
+      <tbody>
+        {% for consumption in water_consumptions %}
+          <tr>
+            <td>{{ consumption.zone }}</td>
+            <td>{{ consumption.date }}</td>
+            <td>{{ consumption.residential_usage }}</td>
+            <td>{{ consumption.commercial_usage }}</td>
+            <td>{{ consumption.industrial_usage }}</td>
+            <td>{{ consumption.total_usage }}</td>
+            
+    {%if user.is_superuser%}
+            <td>
+              <a href="{% url 'water_management:water_consumption_update' consumption.pk %}" class="btn btn-warning btn-sm">Edit</a>
+              <a href="{% url 'water_management:water_consumption_delete' consumption.pk %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+            {%endif%}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

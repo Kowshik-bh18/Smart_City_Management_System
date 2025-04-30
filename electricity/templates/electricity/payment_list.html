@@ -1,0 +1,37 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">Payment List</h2>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Bill #</th>
+                <th>Amount Paid</th>
+                <th>Payment Method</th>
+                <th>Payment Date</th>
+                {%if user.is_superuser%}
+                <th>Actions</th>
+                {%endif%}
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+            <tr>
+                <td>{{ payment.bill.id }}</td>
+                <td>{{ payment.amount_paid }}</td>
+                <td>{{ payment.payment_method }}</td>
+                <td>{{ payment.payment_date|date:"Y-m-d H:i" }}</td>
+                {%if user.is_superuser%}
+                <td>
+                    <a href="{% url 'electricity:update_payment' payment.id %}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{% url 'electricity:delete_payment' payment.id %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+                {%endif%}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">Waste Analytics Records</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    
+    {%if user.is_superuser%}
+    <a href="{% url 'waste_management:waste_analytics_create' %}" class="btn btn-primary mb-3">Add New Analytics Record</a>
+    {%endif%}
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Zone</th>
+                <th>Month</th>
+                <th>Total Waste (kg)</th>
+                <th>Collection Efficiency (%)</th>
+                <th>Complaints Resolved</th>
+                <th>Complaints Total</th>
+                
+    {%if user.is_superuser%}
+                <th>Actions</th>
+                {%endif%}
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in analytics %}
+                <tr>
+                    <td>{{ record.zone }}</td>
+                    <td>{{ record.month }}</td>
+                    <td>{{ record.total_waste_kg }}</td>
+                    <td>{{ record.collection_efficiency }}</td>
+                    <td>{{ record.complaints_resolved }}</td>
+                    <td>{{ record.complaints_total }}</td>
+                    
+    {%if user.is_superuser%}
+                    <td>
+                        <a href="{% url 'waste_management:waste_analytics_update' record.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'waste_management:waste_analytics_delete' record.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                    {%endif%}
+                </tr>
+            {% empty %}
+                <tr><td colspan="7" class="text-center">No records found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

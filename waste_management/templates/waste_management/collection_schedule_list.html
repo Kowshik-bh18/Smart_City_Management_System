@@ -1,0 +1,55 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <div class="container py-5">
+        <h2 class="mb-4">Collection Schedules</h2>
+
+        <!-- Success or Error Messages -->
+        {% if messages %}
+            <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+    {%if user.is_superuser%}
+        <a href="{% url 'waste_management:collection_schedule_create' %}" class="btn btn-primary mb-4">Add New Collection Schedule</a>
+        {%endif%}
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Bin Location</th>
+                    <th>Collection Date</th>
+                    <th>Collected</th>
+                    
+    {%if user.is_superuser%}
+                    <th>Actions</th>
+                    {%endif%}
+                </tr>
+            </thead>
+            <tbody>
+                {% for schedule in schedules %}
+                    <tr>
+                        <td>{{ schedule.bin.location }}</td>
+                        <td>{{ schedule.collection_date|date:"Y-m-d" }}</td>
+                        <td>
+                            {% if schedule.collected %}
+                                <span class="text-primary">&#10004;</span> Collected
+                            {% else %}
+                                <span class="text-muted">Pending</span>
+                            {% endif %}
+                        </td>
+                        
+    {%if user.is_superuser%}
+                        <td>
+                            <a href="{% url 'waste_management:collection_schedule_update' schedule.id %}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{% url 'waste_management:collection_schedule_delete' schedule.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                        {%endif%}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

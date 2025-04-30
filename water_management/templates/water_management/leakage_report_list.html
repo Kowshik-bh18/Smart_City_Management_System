@@ -1,0 +1,53 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container py-4">
+  <h2 class="mb-4">Leakage Reports</h2>
+  <a href="{% url 'water_management:leakage_report_create' %}" class="btn btn-primary mb-3">Report New Leakage</a>
+
+  <table class="table table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Date Reported</th>
+        <th>Image</th>
+        <th>geo Location</th>
+        {%if not user.is_superuser%}
+        <th>Actions</th>
+        {%endif%}
+      </tr>
+    </thead>
+    <tbody>
+      {% for report in reports %}
+      <tr>
+        <td>{{ report.location }}</td>
+        <td>{{ report.description|truncatechars:50 }}</td>
+        <td>{{ report.status }}</td>
+        <td>{{ report.date_reported|date:"Y-m-d H:i" }}</td>
+        <td>
+          {% if report.image %}
+            <img src="{{ report.image.url }}" alt="Leak" width="80">
+          {% else %}
+            No image
+          {% endif %}
+        </td>
+        <td>
+          <a href="https://www.google.com/maps/search/?api=1&query={{ report.latitude }},{{ report.longitude }}" 
+             target="_blank" class="text-decoration-underline text-primary">
+            ({{ report.latitude }}, {{ report.longitude }})
+          </a>
+        </td>
+        {%if not user.is_superuser%}
+        <td>
+          <a href="{% url 'water_management:leakage_report_update' report.pk %}" class="btn btn-sm btn-warning">Edit</a>
+          <a href="{% url 'water_management:leakage_report_delete' report.pk %}" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+        {%endif%}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

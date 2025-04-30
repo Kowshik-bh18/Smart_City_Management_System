@@ -1,0 +1,30 @@
+from django.urls import path
+from . import views
+app_name='waste_management'
+urlpatterns = [
+    path("",views.index,name="home-page"),
+    path('wastebins/', views.wastebin_list, name='wastebin_list'),
+    path('wastebins/add/', views.wastebin_create, name='wastebin_create'),
+    path('wastebins/edit/<int:pk>/', views.wastebin_update, name='wastebin_update'),
+    path('wastebins/delete/<int:pk>/', views.wastebin_delete, name='wastebin_delete'),
+     path('collection-schedules/', views.collection_schedule_list, name='collection_schedule_list'),
+    path('collection-schedules/create/', views.collection_schedule_create, name='collection_schedule_create'),
+    path('collection-schedules/update/<int:pk>/', views.collection_schedule_update, name='collection_schedule_update'),
+    path('collection-schedules/delete/<int:pk>/', views.collection_schedule_delete, name='collection_schedule_delete'),
+    path('bin-sensor-data/', views.bin_sensor_data_list, name='bin_sensor_data_list'),
+    path('bin-sensor-data/create/', views.bin_sensor_data_create, name='bin_sensor_data_create'),
+    path('bin-sensor-data/update/<int:pk>/', views.bin_sensor_data_update, name='bin_sensor_data_update'),
+    path('bin-sensor-data/delete/<int:pk>/', views.bin_sensor_data_delete, name='bin_sensor_data_delete'),
+    path('complaints/', views.complaint_list, name='complaint_list'),
+    path('complaints/create/', views.complaint_create, name='complaint_create'),
+    path('complaints/<int:pk>/edit/', views.complaint_update, name='complaint_update'),
+    path('complaints/<int:pk>/delete/', views.complaint_delete, name='complaint_delete'),
+    path('waste-records/', views.waste_type_record_list, name='waste_type_record_list'),
+    path('waste-records/add/', views.waste_type_record_create, name='waste_type_record_create'),
+    path('waste-records/<int:pk>/edit/', views.waste_type_record_update, name='waste_type_record_update'),
+    path('waste-records/<int:pk>/delete/', views.waste_type_record_delete, name='waste_type_record_delete'),
+    path('analytics/', views.waste_analytics_list, name='waste_analytics_list'),
+    path('analytics/create/', views.waste_analytics_create, name='waste_analytics_create'),
+    path('analytics/update/<int:pk>/', views.waste_analytics_update, name='waste_analytics_update'),
+    path('analytics/delete/<int:pk>/', views.waste_analytics_delete, name='waste_analytics_delete'),
+]

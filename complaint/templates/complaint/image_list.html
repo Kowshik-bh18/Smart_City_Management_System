@@ -1,0 +1,30 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Your Uploaded Images</h2>
+
+{% if not user.is_superuser %}
+<a href="{% url 'complaint:image_upload' %}" class="btn btn-primary mb-3">Upload New</a>
+{% endif %}
+
+<ul>
+    {% for image in images %}
+        {% if request.user == image.user or user.is_superuser %}
+        <li>
+            <img src="{{ image.image.url }}" alt="Uploaded Image" width="300">
+            <p>
+                Location: 
+                <a href="https://www.google.com/maps/search/?api=1&query={{ image.latitude }},{{ image.longitude }}" 
+                   target="_blank" class="text-decoration-underline text-primary">
+                    ({{ image.latitude }}, {{ image.longitude }})
+                </a>
+            </p>
+            <a href="{% url 'complaint:image_edit' image.pk %}" class="btn btn-warning btn-sm">Edit</a> |
+            <a href="{% url 'complaint:image_delete' image.pk %}" class="btn btn-danger btn-sm">Delete</a>
+        </li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+{% endblock %}

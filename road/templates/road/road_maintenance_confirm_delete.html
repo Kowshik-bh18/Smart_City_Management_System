@@ -1,0 +1,12 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<div class="container py-5">
+  <h2>Delete Maintenance</h2>
+  <p>Are you sure you want to delete maintenance on <strong>{{ maintenance.road.name }}</strong>?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, delete</button>
+    <a href="{% url 'road:road_maintenance_list' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}
