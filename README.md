@@ -271,21 +271,98 @@ We welcome contributions! Here's how you can help:
 
 ## 👥 Contributors
 
+<div align="center">
+
+### Meet the Team Behind Smart City Management
+
 <table>
 <tr>
-<td align="center">
+<td align="center" width="33%">
 <a href="https://github.com/Kowshik-bh18">
-<img src="https://github.com/Kowshik-bh18.png" width="100px;" alt="Kowshik BH"/><br />
-<sub><b>Kowshik BH</b></sub>
-</a><br />
-💻 🎨 📖
+<img src="https://github.com/Kowshik-bh18.png" width="120px;" style="border-radius: 50%;" alt="Kowshik BH"/>
+</a>
+<br />
+<br />
+<a href="https://github.com/Kowshik-bh18">
+<b>Kowshik BH</b>
+</a>
+<br />
+<sub>Lead Developer & Architect</sub>
+<br />
+<br />
+<code>Backend Development</code>
+<br />
+<code>System Architecture</code>
+<br />
+<code>Database Design</code>
+<br />
+<br />
+<a href="https://github.com/Kowshik-bh18">
+<img src="https://img.shields.io/github/followers/Kowshik-bh18?label=Follow&style=social" alt="GitHub followers"/>
+</a>
 </td>
-<td align="center">
-<sub><b>MD Ganesha</b></sub><br />
-💻 🧪
+<td align="center" width="33%">
+<a href="https://github.com/madhusudhan-31">
+<img src="https://github.com/madhusudhan-31.png" width="120px;" style="border-radius: 50%;" alt="Madhu Sudhan"/>
+</a>
+<br />
+<br />
+<a href="https://github.com/madhusudhan-31">
+<b>Madhu Sudhan</b>
+</a>
+<br />
+<sub>Core Developer</sub>
+<br />
+<br />
+<code>Module Development</code>
+<br />
+<code>API Integration</code>
+<br />
+<code>Testing & QA</code>
+<br />
+<br />
+<a href="https://github.com/madhusudhan-31">
+<img src="https://img.shields.io/github/followers/madhusudhan-31?label=Follow&style=social" alt="GitHub followers"/>
+</a>
+</td>
+<td align="center" width="33%">
+<a href="https://github.com/MDGanesha">
+<img src="https://github.com/MDGanesha.png" width="120px;" style="border-radius: 50%;" alt="MD Ganesha"/>
+</a>
+<br />
+<br />
+<a href="https://github.com/MDGanesha">
+<b>MD Ganesha</b>
+</a>
+<br />
+<sub>Frontend Developer</sub>
+<br />
+<br />
+<code>UI/UX Design</code>
+<br />
+<code>Frontend Logic</code>
+<br />
+<code>Responsive Design</code>
+<br />
+<br />
+<a href="https://github.com/MDGanesha">
+<img src="https://img.shields.io/github/followers/MDGanesha?label=Follow&style=social" alt="GitHub followers"/>
+</a>
 </td>
 </tr>
 </table>
+
+---
+
+### 💡 Contribution Stats
+
+| Contributor | Commits | Lines Added | Lines Removed | Modules Developed |
+|-------------|---------|-------------|---------------|-------------------|
+| **Kowshik BH** | ![](https://img.shields.io/badge/Core-Architecture-blue) | Backend, Dashboard | Database Design | 5+ Modules |
+| **Madhu Sudhan** | ![](https://img.shields.io/badge/API-Integration-green) | Service Modules | Testing Framework | 4+ Modules |
+| **MD Ganesha** | ![](https://img.shields.io/badge/UI-Development-orange) | Frontend, Templates | Responsive Design | 3+ Modules |
+
+</div>
 
 ---
 
